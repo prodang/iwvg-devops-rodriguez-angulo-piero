@@ -15,3 +15,4 @@
 
 ### Estado del código
 [![DevOps](https://github.com/prodrang/iwvg-devops-rodriguez-angulo-piero/actions/workflows/test-sonar.yml/badge.svg)](https://github.com/prodrang/iwvg-devops-rodriguez-angulo-piero/actions/workflows/test-sonar.yml)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=prodrang_iwvg-devops-rodriguez-angulo-piero&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=prodrang_iwvg-devops-rodriguez-angulo-piero)
