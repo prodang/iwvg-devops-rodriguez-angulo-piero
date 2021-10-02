@@ -24,6 +24,7 @@ public class Searches {
                 .flatMap(user -> user.getFractions().stream())
                 .filter(Fraction::isProper)
                 .findFirst().orElseThrow();
+
     }
 
     public Stream<Double> findDecimalFractionByNegativeSignFraction() {
