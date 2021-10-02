@@ -11,4 +11,12 @@ public class Searches {
                 .flatMap(user -> user.getFractions().stream())
                 .map(Fraction::decimal);
     }
+
+    public Fraction findFractionSubtractionByUserName(String name) {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getName().equals(name))
+                .flatMap(user -> user.getFractions().stream())
+                .reduce(new Fraction(0,0), (fraction, fraction2) -> fraction.subtract(fraction2));
+
+    }
 }

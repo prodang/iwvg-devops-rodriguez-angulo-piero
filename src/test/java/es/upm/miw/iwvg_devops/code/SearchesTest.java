@@ -14,4 +14,11 @@ class SearchesTest {
         assertEquals(List.of(2.0, -0.2, 0.5, 1.3333333333333333), new Searches().findDecimalFractionByUserName("Ana")
                 .collect(Collectors.toList()));
     }
+
+    @Test
+    void testFindFractionSubtractionByUserName(){
+        Fraction result = new Searches().findFractionSubtractionByUserName("Oscar");
+        assertEquals(21, result.getNumerator());
+        assertEquals(-5, result.getDenominator());
+    }
 }
