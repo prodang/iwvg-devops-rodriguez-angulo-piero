@@ -28,4 +28,10 @@ class SearchesTest {
         assertEquals(0, result.getNumerator());
         assertEquals(1, result.getDenominator());
     }
+
+    @Test
+    void testFindDecimalFractionByNegativeSignFraction(){
+        assertEquals(List.of(-0.2, -0.5), new Searches().findDecimalFractionByNegativeSignFraction()
+                .collect(Collectors.toList()));
+    }
 }
