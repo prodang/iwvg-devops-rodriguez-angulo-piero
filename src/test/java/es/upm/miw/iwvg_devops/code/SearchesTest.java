@@ -21,4 +21,11 @@ class SearchesTest {
         assertEquals(21, result.getNumerator());
         assertEquals(-5, result.getDenominator());
     }
+
+    @Test
+    void testFindFirstProperFractionByUserId(){
+        Fraction result = new Searches().findFirstProperFractionByUserId("5");
+        assertEquals(0, result.getNumerator());
+        assertEquals(1, result.getDenominator());
+    }
 }
