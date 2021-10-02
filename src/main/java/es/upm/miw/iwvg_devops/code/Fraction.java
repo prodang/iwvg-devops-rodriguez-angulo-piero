@@ -47,9 +47,45 @@ public class Fraction {
         return ((this.numerator * fraction.getDenominator()) == (this.denominator * fraction.getNumerator()));
     }
 
+    private int mcd(int a, int b) {
+        int temp;
+        while (b != 0) {
+            temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    private int mcm(int a, int b) {
+        return (a * b) / mcd(a, b);
+    }
+
+    private int partial(int mcm, Fraction fraction){
+        return (mcm/fraction.getDenominator())*fraction.getNumerator();
+    }
+
+    private boolean isInitial(){
+        return (this.getNumerator() == 0) && (this.getDenominator() == 0);
+    }
+
+    private Fraction simplify(Fraction fraction){
+        int mcd = this.mcd(fraction.getDenominator(),fraction.getNumerator());
+        return new Fraction(fraction.getNumerator()/mcd,fraction.getDenominator()/mcd);
+    }
+
+    public Fraction sub(Fraction fraction){
+        int mcm = this.mcm(this.getDenominator(), fraction.getDenominator());
+        return new Fraction(partial(mcm,this)-(partial(mcm,fraction)),mcm);
+    }
+
     public Fraction add(Fraction fraction){
-        return new Fraction(((this.getNumerator() * fraction.getDenominator())+(this.getDenominator() * fraction.getNumerator())),
-                this.getDenominator() * fraction.getDenominator());
+        int mcm = this.mcm(this.getDenominator(), fraction.getDenominator());
+        return simplify(new Fraction(partial(mcm,this)+(partial(mcm,fraction)),mcm));
+    }
+
+    public Fraction subtract(Fraction fraction){
+        return this.isInitial() ? fraction : simplify(sub(fraction));
     }
 
     public Fraction multiply(Fraction fraction){
