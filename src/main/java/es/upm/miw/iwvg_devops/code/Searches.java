@@ -1,7 +1,5 @@
 package es.upm.miw.iwvg_devops.code;
 
-import org.apache.logging.log4j.LogManager;
-
 import java.util.stream.Stream;
 
 public class Searches {
@@ -24,7 +22,7 @@ public class Searches {
         return new UsersDatabase().findAll()
                 .filter(user -> user.getId().equals(id))
                 .flatMap(user -> user.getFractions().stream())
-                .filter(fraction -> fraction.isProper())
+                .filter(Fraction::isProper)
                 .findFirst().orElseThrow();
     }
 
@@ -33,7 +31,7 @@ public class Searches {
                 .filter(user -> user.getFractions().stream()
                         .anyMatch(fraction -> fraction.decimal()<0))
                 .flatMap(user -> user.getFractions().stream())
-                .filter(fraction -> fraction.decimal()<0)
-                .map(Fraction::decimal);
+                .map(Fraction::decimal)
+                .filter(decimal -> decimal <0);
     }
 }
