@@ -19,4 +19,12 @@ public class Searches {
                 .reduce(new Fraction(0,0), (fraction, fraction2) -> fraction.subtract(fraction2));
 
     }
+
+    public Fraction findFirstProperFractionByUserId(String id) {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getId().equals(id))
+                .flatMap(user -> user.getFractions().stream())
+                .filter(fraction -> fraction.isProper())
+                .findFirst().orElseThrow();
+    }
 }
